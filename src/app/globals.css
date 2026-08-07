@@ -1,6 +1,7 @@
 @import "tailwindcss";
 
 :root {
+  /* Brand color tokens */
   --paper: #ffffff;
   --paper-2: #f2f2f0;
   --ink: #12161a;
@@ -9,8 +10,37 @@
   --red: #d8232a;
   --navy: #14306b;
 
+  /* Layout and boundary tokens */
   --pad: clamp(20px, 5vw, 64px);
   --maxw: 1240px;
+  --radius: 2px;
+
+  /* Fluid 7-step type scale (clamp-based) */
+  --step--1: clamp(0.6875rem, 0.65rem + 0.15vw, 0.75rem);
+  --step-0: clamp(0.9375rem, 0.9rem + 0.2vw, 1.0625rem);
+  --step-1: clamp(1.125rem, 1.05rem + 0.35vw, 1.25rem);
+  --step-2: clamp(1.375rem, 1.25rem + 0.6vw, 1.625rem);
+  --step-3: clamp(1.75rem, 1.5rem + 1.2vw, 2.25rem);
+  --step-4: clamp(2.25rem, 1.8rem + 2.2vw, 3.25rem);
+  --step-5: clamp(3rem, 2.2rem + 4.2vw, 5.25rem);
+
+  /* Spacing scale on 4px base */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-20: 80px;
+  --space-24: 96px;
+  --space-32: 128px;
+
+  /* Timing */
+  --duration-reveal: 550ms;
 }
 
 @theme {
@@ -24,6 +54,17 @@
 
   --font-display: var(--font-display, "Archivo", sans-serif);
   --font-mono: var(--font-mono, "IBM Plex Mono", monospace);
+
+  --text-step--1: var(--step--1);
+  --text-step-0: var(--step-0);
+  --text-step-1: var(--step-1);
+  --text-step-2: var(--step-2);
+  --text-step-3: var(--step-3);
+  --text-step-4: var(--step-4);
+  --text-step-5: var(--step-5);
+
+  --spacing-pad: var(--pad);
+  --spacing-maxw: var(--maxw);
 }
 
 * {
@@ -33,6 +74,7 @@
 html {
   background-color: var(--paper);
   color: var(--ink);
+  font-family: var(--font-display, "Archivo", sans-serif);
 }
 
 body {
@@ -41,6 +83,39 @@ body {
   background-color: var(--paper);
   color: var(--ink);
   font-family: var(--font-display, "Archivo", sans-serif);
+  font-size: var(--step-0);
+  line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* Section cascading variations */
+.section-dark {
+  background-color: var(--ink);
+  color: var(--paper);
+}
+
+.section-dark .text-ink-2 {
+  color: var(--paper-2);
+}
+
+.section-dark hr,
+.section-dark [role="separator"] {
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+.section-tint {
+  background-color: var(--paper-2);
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
