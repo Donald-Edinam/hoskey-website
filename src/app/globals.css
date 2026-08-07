@@ -1,0 +1,46 @@
+@import "tailwindcss";
+
+:root {
+  --paper: #ffffff;
+  --paper-2: #f2f2f0;
+  --ink: #12161a;
+  --ink-2: #5c6268;
+  --rule: #dcdcd8;
+  --red: #d8232a;
+  --navy: #14306b;
+
+  --pad: clamp(20px, 5vw, 64px);
+  --maxw: 1240px;
+}
+
+@theme {
+  --color-paper: var(--paper);
+  --color-paper-2: var(--paper-2);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-rule: var(--rule);
+  --color-red: var(--red);
+  --color-navy: var(--navy);
+
+  --font-display: var(--font-display, "Archivo", sans-serif);
+  --font-mono: var(--font-mono, "IBM Plex Mono", monospace);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background-color: var(--paper);
+  color: var(--ink);
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background-color: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-display, "Archivo", sans-serif);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
