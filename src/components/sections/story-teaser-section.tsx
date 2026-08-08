@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Container, Section, Eyebrow } from "@/components/ui/layout";
 import { Display, Body, Mono } from "@/components/ui/typography";
 import { Frame } from "@/components/ui/frame";
+import { Img } from "@/components/ui/img";
 import { Rise } from "@/components/ui/rise";
 
 export function StoryTeaserSection() {
@@ -44,7 +45,14 @@ export function StoryTeaserSection() {
           {/* Right Column: Founder Portrait (5 cols) */}
           <div className="min-[900px]:col-span-5 flex flex-col items-center">
             <div className="w-full max-w-sm">
-              <Frame ratio="3/4" label="Portrait" />
+              <Frame ratio="3/4" label="Portrait">
+                <Img
+                  src="/images/about/founder-ziblim.png"
+                  alt="Ziblim Abu James — Founder of Hoskey Production"
+                  fill
+                  className="object-cover"
+                />
+              </Frame>
               {/* Frame caption sits outside the frame in mono */}
               <Mono className="text-[11px] text-ink-2 mt-3 block text-center">
                 Ziblim Abu James — Founder
