@@ -1,7 +1,7 @@
 export default function HomePage() {
   return (
-    <main>
-      {/* Blank page for M0 Foundation */}
-    </main>
+    <div className="w-full">
+      {/* Content will be added in upcoming milestones */}
+    </div>
   );
 }
