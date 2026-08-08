@@ -8,6 +8,7 @@ export const siteSettings: SiteSettings = {
   whatsapp: SITE.whatsapp,
   email: SITE.email,
   address: SITE.address,
+  showreelId: null,
   socials: [
     { platform: "WhatsApp", url: `https://wa.me/${SITE.whatsapp}` },
     { platform: "YouTube", url: null },

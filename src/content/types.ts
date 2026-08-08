@@ -87,6 +87,7 @@ export type SiteSettings = {
   whatsapp?: string | null;
   email?: string | null;
   address?: string | null;
+  showreelId?: string | null;
   socials?: SocialLink[];
 };
 
