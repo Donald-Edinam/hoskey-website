@@ -58,6 +58,34 @@ const eslintConfig = defineConfig([
       "custom/no-raw-hex": "error",
     },
   },
+  {
+    files: ["src/**/*.{ts,tsx}"],
+    ignores: ["src/lib/content.ts", "src/content/**"],
+    rules: {
+      "no-restricted-imports": [
+        "error",
+        {
+          patterns: [
+            {
+              group: [
+                "@/content",
+                "@/content/*",
+                "@/content/**",
+                "../*content",
+                "../*content/*",
+                "./*content",
+                "./*content/*",
+                "src/content",
+                "src/content/*",
+              ],
+              message:
+                "Direct imports from src/content are prohibited. Import exclusively from '@/lib/content' instead.",
+            },
+          ],
+        },
+      ],
+    },
+  },
   globalIgnores([
     ".next/**",
     "out/**",
