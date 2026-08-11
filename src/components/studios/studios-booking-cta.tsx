@@ -17,8 +17,9 @@ export interface StudiosBookingCtaProps {
 
 export function StudiosBookingCta({
   settings,
-  enableOnlineBooking = false,
+  enableOnlineBooking = true,
 }: StudiosBookingCtaProps) {
+
   const phone = settings.phone ?? "+233 59 794 8979";
   const studioWhatsappMessage =
     "Hello Hoskey Production, I am inquiring about Demes shr Studios availability and booking.";

@@ -1,4 +1,5 @@
 import React from "react";
+import { Check } from "lucide-react";
 import { Container, Section, Eyebrow } from "@/components/ui/layout";
 import { Display, Mono } from "@/components/ui/typography";
 import { Rise } from "@/components/ui/rise";
@@ -46,14 +47,13 @@ export function CaseStudyOutcome({ project }: CaseStudyOutcomeProps) {
                     {deliverables.map((item, idx) => (
                       <li key={idx} className="py-3 flex items-center justify-between">
                         <span>{item}</span>
-                        <span className="text-red font-bold" aria-hidden="true">
-                          ✓
-                        </span>
+                        <Check className="w-3.5 h-3.5 text-red stroke-[3]" aria-hidden="true" />
                       </li>
                     ))}
                   </ul>
                 </div>
               )}
+
 
               {/* Reach Metric (Only rendered if supplied) */}
               {reach && (

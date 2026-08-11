@@ -53,3 +53,42 @@ export function getServiceWhatsAppLink(slug: string, fallbackTitle?: string): st
   return getWhatsAppLink("production", message);
 }
 
+export interface BookingSummaryPayload {
+  spaceName: string;
+  formattedDate: string;
+  timeRange: string;
+  durationHours: number;
+  totalCostFormatted: string;
+  rateTypeExplanation: string;
+  clientName: string;
+  phone: string;
+  email?: string;
+  projectType: string;
+  headcount: number;
+}
+
+export function getStudioBookingWhatsAppMessage(booking: BookingSummaryPayload): string {
+  const lines = [
+    `*STUDIO BOOKING REQUEST — DEMES SHR STUDIOS*`,
+    ``,
+    `• *Space:* ${booking.spaceName}`,
+    `• *Date:* ${booking.formattedDate}`,
+    `• *Time:* ${booking.timeRange} (${booking.durationHours} hrs)`,
+    `• *Rate:* ${booking.totalCostFormatted} (${booking.rateTypeExplanation})`,
+    `• *Client:* ${booking.clientName}`,
+    `• *Phone:* ${booking.phone}`,
+    ...(booking.email ? [`• *Email:* ${booking.email}`] : []),
+    `• *Project:* ${booking.projectType}`,
+    `• *Headcount:* ${booking.headcount} ${booking.headcount === 1 ? "person" : "people"}`,
+    ``,
+    `Please confirm studio availability and lock in this session.`,
+  ];
+  return lines.join("\n");
+}
+
+export function getStudioBookingWhatsAppLink(booking: BookingSummaryPayload): string {
+  const message = getStudioBookingWhatsAppMessage(booking);
+  return getWhatsAppLink("studio", message);
+}
+
+

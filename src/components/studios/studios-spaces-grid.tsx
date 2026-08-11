@@ -1,6 +1,7 @@
 import React from "react";
 import { Container, Section, Eyebrow } from "@/components/ui/layout";
 import { Display, Heading, Body, Mono } from "@/components/ui/typography";
+import { Button } from "@/components/ui/button";
 import { WhatsAppButton } from "@/components/ui/whatsapp-button";
 import { Rise } from "@/components/ui/rise";
 import { StudioSpace } from "@/lib/content";
@@ -8,6 +9,7 @@ import { StudioSpace } from "@/lib/content";
 export interface StudiosSpacesGridProps {
   spaces: StudioSpace[];
 }
+
 
 export function StudiosSpacesGrid({ spaces }: StudiosSpacesGridProps) {
   if (!spaces || spaces.length === 0) {
@@ -117,22 +119,32 @@ export function StudiosSpacesGrid({ spaces }: StudiosSpacesGridProps) {
                 </div>
 
                 {/* Card Action */}
-                <div className="mt-8 pt-5 border-t border-rule">
+                <div className="mt-8 pt-5 border-t border-rule flex flex-col sm:flex-row items-center gap-3">
+                  <Button
+                    href={`/studios/book?space=${space.slug}&step=date`}
+                    variant="primary"
+                    size="sm"
+                    className="w-full sm:flex-1 justify-center"
+                  >
+                    <span>Book session</span>
+                    <span aria-hidden="true">→</span>
+                  </Button>
+
                   <WhatsAppButton
                     context="studio"
                     customText={whatsappMessage}
                     size="sm"
                     variant="ghost"
-                    className="w-full justify-between group-hover:border-ink group-hover:bg-ink group-hover:text-paper transition-all"
+                    className="w-full sm:w-auto justify-center"
                   >
-                    <span>Book this space</span>
-                    <span aria-hidden="true">→</span>
+                    <span>WhatsApp</span>
                   </WhatsAppButton>
                 </div>
               </div>
             );
           })}
         </div>
+
       </Container>
     </Section>
   );
