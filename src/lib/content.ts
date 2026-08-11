@@ -58,6 +58,35 @@ export async function getService(slug: string): Promise<Service | null> {
 }
 
 /**
+ * Accessor for projects related to a specific service.
+ * Matches project categories against service domain tags.
+ */
+export async function getProjectsForService(
+  serviceSlug: string,
+  limit = 3
+): Promise<Project[]> {
+  const allProjects = await getProjects();
+  const serviceCategoryMap: Record<string, string[]> = {
+    "tv-production": ["Broadcast", "Television", "Live"],
+    "brand-films": ["Commercial", "Corporate", "Brand Film"],
+    "documentaries": ["Documentary", "Cultural"],
+    "live-streaming": ["Live", "Broadcast", "Streaming"],
+    "sound-engineering": ["Corporate", "Broadcast", "Sound", "Studio"],
+    "technical-stage": ["Live", "Broadcast", "Stage"],
+  };
+
+  const targetCategories = serviceCategoryMap[serviceSlug] ?? [];
+  const matched = allProjects.filter((project) =>
+    project.categories.some((c) =>
+      targetCategories.some((tc) => tc.toLowerCase() === c.toLowerCase())
+    )
+  );
+
+  return matched.slice(0, limit);
+}
+
+
+/**
  * Accessor for the production team directory.
  */
 export async function getTeam(): Promise<TeamMember[]> {

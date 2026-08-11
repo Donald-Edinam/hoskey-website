@@ -5,12 +5,25 @@ import { Button } from "@/components/ui/button";
 import { WhatsAppButton } from "@/components/ui/whatsapp-button";
 import { Rise } from "@/components/ui/rise";
 import { SiteSettings } from "@/lib/content";
+import { WhatsAppContext } from "@/lib/whatsapp";
 
 export interface ClosingCtaSectionProps {
   settings: SiteSettings;
+  whatsappMessage?: string;
+  context?: WhatsAppContext;
+  eyebrow?: string;
+  title?: string;
+  lede?: string;
 }
 
-export function ClosingCtaSection({ settings }: ClosingCtaSectionProps) {
+export function ClosingCtaSection({
+  settings,
+  whatsappMessage,
+  context = "project",
+  eyebrow = "Get in touch",
+  title = "Bring your vision to life.",
+  lede = "Tell us about your broadcast, documentary, or studio recording project. We reply on the same business day.",
+}: ClosingCtaSectionProps) {
   const phone = settings.phone ?? "+233 59 794 8979";
   const email = settings.email;
 
@@ -24,27 +37,29 @@ export function ClosingCtaSection({ settings }: ClosingCtaSectionProps) {
       <Container className="max-w-3xl flex flex-col items-center">
         <Rise>
           <Eyebrow dot={false} className="mb-4 text-paper-2">
-            Get in touch
+            {eyebrow}
           </Eyebrow>
 
           <Display level={2} className="text-paper mb-6 [text-wrap:balance]">
-            Bring your vision to life.
+            {title}
           </Display>
 
           <Lede className="text-paper-2 text-center mx-auto mb-10 max-w-[48ch]">
-            Tell us about your broadcast, documentary, or studio recording project. We reply on the same business day.
+            {lede}
           </Lede>
 
           {/* Action CTAs */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12 w-full sm:w-auto">
             <WhatsAppButton
-              context="project"
+              context={context}
+              customText={whatsappMessage}
               size="md"
               variant="primary"
               className="w-full sm:w-auto"
             >
               Start on WhatsApp
             </WhatsAppButton>
+
 
             <Button
               href={`tel:${phone.replace(/\s+/g, "")}`}

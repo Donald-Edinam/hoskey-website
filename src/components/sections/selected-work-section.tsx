@@ -1,11 +1,11 @@
 import React from "react";
 import Link from "next/link";
 import { Container, Section, Eyebrow } from "@/components/ui/layout";
-import { Display, Heading, Body, Mono } from "@/components/ui/typography";
+import { Display, Heading, Mono } from "@/components/ui/typography";
 import { Frame } from "@/components/ui/frame";
-import { Img } from "@/components/ui/img";
 import { Rise } from "@/components/ui/rise";
 import { Project } from "@/lib/content";
+import { ProjectCard } from "@/components/work/project-card";
 
 export interface SelectedWorkSectionProps {
   projects: Project[];
@@ -73,51 +73,18 @@ export function SelectedWorkSection({ projects }: SelectedWorkSectionProps) {
               </div>
             </>
           ) : (
-            displayProjects.map((project, idx) => {
-              const labelNumber = `Project ${String(idx + 1).padStart(2, "0")}`;
-              return (
-                <Link
-                  key={project.slug}
-                  href={`/work/${project.slug}`}
-                  className="group flex flex-col gap-3 focus-visible:outline-2 focus-visible:outline-red"
-                >
-                  <Frame ratio="4/3" label={labelNumber}>
-                    {project.poster ? (
-                      <Img
-                        src={project.poster}
-                        alt={project.title}
-                        fill
-                        className="object-cover transition-transform duration-500 group-hover:scale-[1.02]"
-                      />
-                    ) : null}
-                  </Frame>
-
-                  <div>
-                    <div className="flex items-center justify-between text-[length:var(--step--1)] text-ink-2">
-                      <Mono className="text-[10px]">
-                        {project.categories.join(" · ")}
-                      </Mono>
-                      {project.clientVisible && project.client && (
-                        <span className="font-mono text-[10px] uppercase text-ink-2">
-                          {project.client}
-                        </span>
-                      )}
-                    </div>
-
-                    <Heading level={4} className="text-[length:var(--step-0)] text-ink group-hover:text-red transition-colors mt-1">
-                      {project.title}
-                    </Heading>
-
-                    <Body size="sm" className="text-ink-2 mt-1 line-clamp-2">
-                      {project.summary}
-                    </Body>
-                  </div>
-                </Link>
-              );
-            })
+            displayProjects.map((project, idx) => (
+              <ProjectCard
+                key={project.slug}
+                project={project}
+                index={idx}
+                priority={idx < 3}
+              />
+            ))
           )}
         </div>
       </Container>
     </Section>
   );
 }
+
