@@ -10,6 +10,20 @@ export type Credit = {
   name: string;
 };
 
+export type ProjectFigure = {
+  src: string;
+  alt: string;
+  caption?: string;
+  variant: "full" | "half" | "paired";
+  aspect?: string;
+};
+
+export type ProjectQuote = {
+  quote: string;
+  author: string;
+  role?: string;
+};
+
 export type Project = {
   slug: string;
   title: string;
@@ -18,12 +32,19 @@ export type Project = {
   date: string;
   categories: string[];
   summary: string;
+  runtime?: string;
+  role?: string;
   brief?: string;
+  briefParagraphs?: string[];
   approach?: string;
+  approachParagraphs?: string[];
   outcome?: string;
+  reach?: string;
+  quote?: ProjectQuote;
   videoId?: string;
   poster?: string;
   gallery?: Image[];
+  figures?: ProjectFigure[];
   deliverables?: string[];
   credits?: Credit[];
   featured?: boolean;
