@@ -18,8 +18,9 @@ export function StudiosHeader() {
   return (
     <Section
       variant="dark"
-      className="relative overflow-hidden pt-[clamp(48px,8vw,96px)] pb-[clamp(44px,7vw,80px)] border-b border-white/10"
+      className="relative overflow-hidden -mt-16 pt-[clamp(80px,11vw,128px)] pb-[clamp(44px,7vw,80px)] border-b border-white/10"
     >
+
       {/* Cinematic Studio Background Image with Smooth Gradient Blend into Header */}
       <div className="absolute inset-0 pointer-events-none select-none z-0">
         <Img

@@ -22,7 +22,8 @@ export function Header() {
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const hamburgerRef = useRef<HTMLButtonElement>(null);
 
-  const isDarkPage = pathname === "/studios" || pathname?.startsWith("/studios/");
+  const isStudioPage = pathname === "/studios" || pathname?.startsWith("/studios/");
+  const isDarkPage = pathname === "/" || isStudioPage;
 
   return (
     <>
@@ -43,7 +44,7 @@ export function Header() {
         className={cn(
           "sticky top-0 z-40 h-16 w-full backdrop-blur-md transition-colors duration-200",
           isDarkPage
-            ? "bg-ink/95 border-b border-white/10 text-paper"
+            ? "bg-black/35 border-b border-white/10 text-paper"
             : "bg-[rgba(255,255,255,0.92)] border-b border-rule text-ink"
         )}
       >
@@ -92,13 +93,14 @@ export function Header() {
           <div className="flex items-center gap-4">
             <div className="hidden min-[900px]:block">
               <WhatsAppButton
-                context={isDarkPage ? "studio" : "project"}
+                context={isStudioPage ? "studio" : "project"}
                 size="sm"
                 variant="primary"
               >
-                {isDarkPage ? "Book studio" : "Message us"}
+                {isStudioPage ? "Book studio" : "Message us"}
               </WhatsAppButton>
             </div>
+
 
             {/* Mobile Hamburger Button (< 900px) */}
             <button
