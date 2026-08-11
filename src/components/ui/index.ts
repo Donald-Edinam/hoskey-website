@@ -6,3 +6,5 @@ export * from "./whatsapp-button";
 export * from "./img";
 export * from "./video-facade";
 export * from "./rise";
+export * from "./lightbox";
+

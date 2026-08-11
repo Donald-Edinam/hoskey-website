@@ -22,6 +22,8 @@ export function Header() {
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const hamburgerRef = useRef<HTMLButtonElement>(null);
 
+  const isDarkPage = pathname === "/studios" || pathname?.startsWith("/studios/");
+
   return (
     <>
       {/* Accessible Skip Link */}
@@ -39,15 +41,16 @@ export function Header() {
       {/* Sticky 64px Header */}
       <header
         className={cn(
-          "sticky top-0 z-40 h-16 w-full",
-          "bg-[rgba(255,255,255,0.92)] backdrop-blur-md border-b border-rule",
-          "transition-colors duration-200"
+          "sticky top-0 z-40 h-16 w-full backdrop-blur-md transition-colors duration-200",
+          isDarkPage
+            ? "bg-ink/95 border-b border-white/10 text-paper"
+            : "bg-[rgba(255,255,255,0.92)] border-b border-rule text-ink"
         )}
       >
         <Container className="h-full flex items-center justify-between">
           {/* Left: Brand Logo Lockup */}
           <div className="flex items-center shrink-0">
-            <Logo />
+            <Logo inverted={isDarkPage} />
           </div>
 
           {/* Centre: Five navigation links (Desktop >= 900px) */}
@@ -65,9 +68,15 @@ export function Header() {
                   key={link.href}
                   href={link.href}
                   className={cn(
-                    "relative py-1 font-medium text-[length:var(--step-0)] text-ink-2 hover:text-ink transition-colors",
+                    "relative py-1 font-medium text-[length:var(--step-0)] transition-colors",
                     "focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-red",
-                    isActive && "text-ink font-semibold",
+                    isDarkPage
+                      ? isActive
+                        ? "text-paper font-semibold"
+                        : "text-paper-2 hover:text-paper"
+                      : isActive
+                      ? "text-ink font-semibold"
+                      : "text-ink-2 hover:text-ink",
                     // Underline styles
                     "after:content-[''] after:absolute after:bottom-0 after:left-0 after:h-[2px] after:bg-red after:transition-all after:duration-200",
                     isActive ? "after:w-full" : "after:w-0 hover:after:w-full"
@@ -82,8 +91,12 @@ export function Header() {
           {/* Right: WhatsApp CTA & Mobile Toggle */}
           <div className="flex items-center gap-4">
             <div className="hidden min-[900px]:block">
-              <WhatsAppButton context="project" size="sm">
-                Message us
+              <WhatsAppButton
+                context={isDarkPage ? "studio" : "project"}
+                size="sm"
+                variant="primary"
+              >
+                {isDarkPage ? "Book studio" : "Message us"}
               </WhatsAppButton>
             </div>
 
@@ -95,8 +108,11 @@ export function Header() {
               aria-label="Open menu"
               aria-expanded={isMobileOpen}
               className={cn(
-                "min-[900px]:hidden inline-flex items-center justify-center p-2 text-ink rounded-[var(--radius)]",
-                "border border-rule hover:bg-paper-2 focus-visible:outline-2 focus-visible:outline-red"
+                "min-[900px]:hidden inline-flex items-center justify-center p-2 rounded-[var(--radius)] transition-colors",
+                isDarkPage
+                  ? "text-paper border border-white/20 hover:bg-white/10"
+                  : "text-ink border border-rule hover:bg-paper-2",
+                "focus-visible:outline-2 focus-visible:outline-red"
               )}
             >
               <svg
@@ -110,6 +126,7 @@ export function Header() {
           </div>
         </Container>
       </header>
+
 
       {/* Mobile Navigation Panel */}
       <MobileNav

@@ -80,3 +80,20 @@ export const studioSpaces: StudioSpace[] = [
     ],
   },
 ];
+
+export const studioGallery = [
+  {
+    src: "/images/studio/the-room.png",
+    alt: "The room — main studio floor at Demes shr Studios with acoustic wood slats and cinema rig",
+  },
+  {
+    src: "/images/studio/booth.png",
+    alt: "Booth — vocal and podcast isolation booth with Shure SM7B broadcast mic",
+  },
+  {
+    src: "/images/studio/desk.png",
+    alt: "Desk — video editing and post-production workstation",
+  },
+];
+
+

@@ -1,4 +1,5 @@
 import {
+  Image,
   Project,
   Service,
   TeamMember,
@@ -6,9 +7,11 @@ import {
   Testimonial,
   SiteSettings,
   AboutContent,
+
   projects,
   services,
   studioSpaces,
+  studioGallery,
   team,
   testimonials,
   siteSettings,
@@ -17,6 +20,7 @@ import {
 
 // Re-export all types so callers can import types strictly from @/lib/content
 export type * from "@/content/types";
+
 
 /**
  * Accessor for all production projects.
@@ -99,6 +103,14 @@ export async function getTeam(): Promise<TeamMember[]> {
 export async function getStudioSpaces(): Promise<StudioSpace[]> {
   return studioSpaces;
 }
+
+/**
+ * Accessor for Demes shr Studios visual gallery stills.
+ */
+export async function getStudioGallery(): Promise<Image[]> {
+  return studioGallery;
+}
+
 
 /**
  * Accessor for client and partner testimonials.

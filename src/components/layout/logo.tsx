@@ -4,9 +4,10 @@ import { cn } from "@/lib/utils";
 
 export interface LogoProps {
   className?: string;
+  inverted?: boolean;
 }
 
-export function Logo({ className }: LogoProps) {
+export function Logo({ className, inverted = false }: LogoProps) {
   return (
     <Link
       href="/"
@@ -16,12 +17,23 @@ export function Logo({ className }: LogoProps) {
       )}
       aria-label="Hoskey Production homepage"
     >
-      <span className="font-black text-[22px] tracking-[-0.03em] text-ink flex items-center">
-        H<span className="text-navy">osk</span>ey
+      <span
+        className={cn(
+          "font-black text-[22px] tracking-[-0.03em] flex items-center transition-colors",
+          inverted ? "text-paper" : "text-ink"
+        )}
+      >
+        H<span className={inverted ? "text-red" : "text-navy"}>osk</span>ey
       </span>
-      <span className="font-mono text-[9px] tracking-[0.28em] uppercase text-ink-2 mt-0.5">
+      <span
+        className={cn(
+          "font-mono text-[9px] tracking-[0.28em] uppercase mt-0.5 transition-colors",
+          inverted ? "text-paper-2" : "text-ink-2"
+        )}
+      >
         Production
       </span>
     </Link>
   );
 }
+
